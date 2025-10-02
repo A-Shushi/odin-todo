@@ -29,25 +29,22 @@
     width: 100%;
     padding: 0.5rem;
     border-radius: 8px;
+    background-color: red;
 }
 
 
 .project-list-item {
     flex: 1;
-    padding: 0.8rem 2rem 0.8rem 0.75rem;
-    margin: -0.8rem -2rem -0.8rem -0.75rem;
+    padding: 0.8rem 2rem 0.8rem 0.5rem;
+    margin: -0.8rem -2rem -0.8rem -0.5rem;
     border-radius: 8px;
     text-align: start;
     border: none;
+    background-color: lightgrey;
 }
 
 .project-list-item:hover {
     background-color: grey;
-}
-
-#project-list > li,
-.project-list-item {
-    background-color: lightgrey;
 }
 
 .delete {
@@ -57,4 +54,9 @@
     border: none;
     position: relative;
     z-index: 1;
+    border-radius: 4px;
+}
+
+.delete:hover {
+    background-color: orangered;
 }
