@@ -77,7 +77,33 @@ li {
     background-color: orangered;
 }
 
-.project-container {
+#project-container {
+    display: flex;
+    flex-direction: column;
     background-color: lightblue;
     padding: 3rem;
+    gap: 3rem;
+}
+
+#todo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.todo-list-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: lightgrey;
+    border-radius: 8px;
+    padding: 0.5rem;
+}
+
+.todo-list-item:hover {
+    background-color: grey;
+}
+
+.todo-item {
+    flex: 1;
 }
