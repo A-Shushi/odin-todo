@@ -15,6 +15,7 @@ function renderSidebar(projectArray) {
     projectButton.addEventListener("click", (event) => {
         console.log(event)
         console.log("Inbox")
+        renderProject(projectArray[0]);
     })
     newListItem.appendChild(projectButton)
 
@@ -30,6 +31,7 @@ function renderSidebar(projectArray) {
         projectButton.addEventListener("click", (event) => {
             console.log(event)
             console.log(`PROJECT ${i}`)
+            renderProject(projectArray[i]);
         })
         newListItem.appendChild(projectButton)
 
