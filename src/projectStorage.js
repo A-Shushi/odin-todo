@@ -10,7 +10,7 @@ Project.prototype.appendTodoToProject = function (todo) {
 }
 
 Project.prototype.deleteTodoInProject = function (todoIndex) {
-    this.todoArray.splice(todoIndex);
+    this.todoArray.splice(todoIndex, 1);
 }
 
 const projectArray = [];

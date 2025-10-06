@@ -1,4 +1,6 @@
+import createTodo from "./createTodo.js";
 import {projectArray, createProject, deleteProject} from "./projectStorage.js";
+import Todo from "./createTodo.js";
 
 const sidebarProjects = document.querySelector("#project-list")
 const projectContainer = document.querySelector("#project-container")
@@ -75,6 +77,87 @@ function renderProject(project) {
     newProjectHeader.textContent = project.name;
     projectContainer.appendChild(newProjectHeader)
 
+    const newTodoDiv = document.createElement("div")
+
+    const newAddTodoButton = document.createElement("button")
+    newAddTodoButton.id = "new-todo-button"
+    newAddTodoButton.textContent = "New TODO"
+    newAddTodoButton.addEventListener("click", () => {
+        if (newAddTodoButton.className === "close") {
+            todoForm.classList.remove("active");
+            newAddTodoButton.textContent = "New TODO";
+            newAddTodoButton.classList.remove("close");
+        } else {
+            todoForm.className = "active";
+            newAddTodoButton.textContent = "Close";
+            newAddTodoButton.className = "close";
+        }
+    })
+    newTodoDiv.appendChild(newAddTodoButton)
+    projectContainer.appendChild(newTodoDiv)
+
+    const todoForm = document.createElement("form")
+    todoForm.id = "todo-form";
+
+    const titleLabel = document.createElement("label")
+    titleLabel.setAttribute("for", "todo-title")
+    titleLabel.textContent = "Title:"
+    todoForm.appendChild(titleLabel)
+    const titleInput = document.createElement("input")
+    titleInput.type = "text";
+    titleInput.id = "todo-title"
+    titleInput.name = "todo-title"
+    todoForm.appendChild(titleInput)
+
+    const descriptionLabel = document.createElement("label")
+    descriptionLabel.setAttribute("for", "todo-description")
+    descriptionLabel.textContent = "Description:"
+    todoForm.appendChild(descriptionLabel)
+    const descriptionInput = document.createElement("textarea")
+    descriptionInput.id = "todo-description"
+    descriptionInput.name = "todo-description"
+    todoForm.appendChild(descriptionInput)
+
+    const priorityLabel = document.createElement("label")
+    priorityLabel.setAttribute("for", "todo-priority")
+    priorityLabel.textContent = "Priority:"
+    todoForm.appendChild(priorityLabel)
+    const priorityInput = document.createElement("select")
+    priorityInput.id = "todo-priority"
+    priorityInput.name = "todo-priority"
+    const optionLow = document.createElement("option")
+    optionLow.value = "low"
+    optionLow.textContent = "Low"
+    priorityInput.appendChild(optionLow)
+    const optionHigh = document.createElement("option")
+    optionHigh.value = "high"
+    optionHigh.textContent = "High"
+    priorityInput.appendChild(optionHigh)
+    todoForm.appendChild(priorityInput)
+
+    const dateLabel = document.createElement("label");
+    dateLabel.setAttribute("for", "todo-date")
+    dateLabel.textContent = "Date:"
+    todoForm.appendChild(dateLabel)
+    const dateInput = document.createElement("input");
+    dateInput.type = "date"
+    dateInput.id = "todo-date"
+    dateInput.name = "todo-date"
+    todoForm.appendChild(dateInput);
+
+    const submitTodoButton = document.createElement("button");
+    submitTodoButton.type = "button";
+    submitTodoButton.textContent = "Add TODO"
+    submitTodoButton.addEventListener("click", () => {
+        const newTodo = new Todo(titleInput.value, descriptionInput.value, dateInput.value, priorityInput.value)
+        project.appendTodoToProject(newTodo)
+        renderProject(project)
+    })
+    todoForm.appendChild(submitTodoButton)
+
+    projectContainer.appendChild(todoForm)
+
+    
     const newUnorderedList = document.createElement("ul")
     newUnorderedList.id = "todo-list";
     projectContainer.appendChild(newUnorderedList);
@@ -90,8 +173,10 @@ function renderProject(project) {
         newCheckbox.addEventListener('change', function () {
             if (this.checked) {
                 console.log(`${project.todoArray[i].title} is checked`);
+                newListItem.classList.add("checked-todo")
             } else {
                 console.log(`${project.todoArray[i].title} is unchecked`);
+                newListItem.classList.remove("checked-todo")
             }
         });
         newListItem.appendChild(newCheckbox);

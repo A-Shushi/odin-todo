@@ -89,7 +89,33 @@ li {
     flex-direction: column;
     background-color: lightblue;
     padding: 3rem;
-    gap: 3rem;
+}
+
+#project-container > h1 {
+    margin-bottom: 3rem;
+}
+
+#new-todo-button {
+    width: 10rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 0.5rem;
+    background-color: lightgreen;
+}
+
+#new-todo-button.close {
+    background-color: lightcoral;
+}
+
+#todo-form {
+    display: none;
+}
+
+#todo-form.active {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
 }
 
 #todo-list {
@@ -113,4 +139,8 @@ li {
 
 .todo-item {
     flex: 1;
+}
+
+.checked-todo {
+    text-decoration: line-through;
 }
