@@ -126,11 +126,11 @@ function renderProject(project) {
     priorityInput.id = "todo-priority"
     priorityInput.name = "todo-priority"
     const optionLow = document.createElement("option")
-    optionLow.value = "low"
+    optionLow.value = "Low"
     optionLow.textContent = "Low"
     priorityInput.appendChild(optionLow)
     const optionHigh = document.createElement("option")
-    optionHigh.value = "high"
+    optionHigh.value = "High"
     optionHigh.textContent = "High"
     priorityInput.appendChild(optionHigh)
     todoForm.appendChild(priorityInput)
@@ -157,7 +157,7 @@ function renderProject(project) {
 
     projectContainer.appendChild(todoForm)
 
-    
+
     const newUnorderedList = document.createElement("ul")
     newUnorderedList.id = "todo-list";
     projectContainer.appendChild(newUnorderedList);
@@ -172,14 +172,17 @@ function renderProject(project) {
         newCheckbox.id = `${i}`;
         newCheckbox.addEventListener('change', function () {
             if (this.checked) {
-                console.log(`${project.todoArray[i].title} is checked`);
                 newListItem.classList.add("checked-todo")
             } else {
-                console.log(`${project.todoArray[i].title} is unchecked`);
                 newListItem.classList.remove("checked-todo")
             }
         });
         newListItem.appendChild(newCheckbox);
+
+        const newPriority = document.createElement("p")
+        newPriority.className = "priority"
+        newPriority.textContent = project.todoArray[i].priority
+        newListItem.appendChild(newPriority);
 
         const newDueDate = document.createElement("p");
         newDueDate.className = "due-date";

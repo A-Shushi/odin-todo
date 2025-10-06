@@ -6,19 +6,10 @@ import {projectArray} from "./projectStorage.js";
 
 // Create New Project
 projectStorage.createProject("Inbox")
-projectStorage.createProject("New Project")
-projectStorage.createProject("Second Project")
 
 // Create new note and append to storage
 
-projectStorage.projectArray[0].appendTodoToProject(new Todo("Index Title", "Description", "20 Sept", "Priority"))
-projectStorage.projectArray[1].appendTodoToProject(new Todo("First Title", "Description", "21 Sept", "Priority"))
-projectStorage.projectArray[2].appendTodoToProject(new Todo("First Title", "Description", "22 Sept", "Priority"))
-
-console.log(projectStorage.projectArray)
-console.log(projectStorage.projectArray[0].todoArray)
-console.log(projectStorage.projectArray[1].todoArray)
-console.log(projectStorage.projectArray[2].todoArray)
+projectStorage.projectArray[0].appendTodoToProject(new Todo("Index Title", "Description", "20 Sept", "High"))
 
 display.renderSidebar()
 display.renderProject(projectStorage.projectArray[0])
