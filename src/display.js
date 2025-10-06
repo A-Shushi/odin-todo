@@ -44,6 +44,26 @@ function renderSidebar() {
 
         sidebarProjects.appendChild(newListItem)
     }
+    const addProjectItem = document.createElement("li");
+    addProjectItem.id = "add-project-item"
+
+    const newProjectButton = document.createElement("button");
+    newProjectButton.id = "add-project-button";
+    newProjectButton.textContent = "CREATE NEW PROJECT";
+    newProjectButton.addEventListener("click", (event) => {
+        console.log("New Project")
+        const newProjectName = prompt("What's the name of the project?")
+        if (newProjectName) {
+            createProject(newProjectName)
+            renderSidebar();
+        } else {
+            alert("Please provide a suitable name for the new project")
+        }
+    })
+    addProjectItem.appendChild(newProjectButton)
+
+    sidebarProjects.appendChild(addProjectItem)
+
 }
 
 function renderProject(project) {
