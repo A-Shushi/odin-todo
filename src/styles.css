@@ -124,6 +124,19 @@ li {
     gap: 0.5rem;
 }
 
+.priority {
+    border: 1px solid green;
+    border-radius: 8px;
+    width: 3rem;
+    background-color: lightgreen;
+    text-align: center;
+}
+
+.high-priority {
+    border: 1px solid red;
+    background-color: lightcoral;
+}
+
 .todo-list-item {
     display: flex;
     align-items: center;

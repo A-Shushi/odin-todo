@@ -180,8 +180,11 @@ function renderProject(project) {
         newListItem.appendChild(newCheckbox);
 
         const newPriority = document.createElement("p")
-        newPriority.className = "priority"
-        newPriority.textContent = project.todoArray[i].priority
+        newPriority.className = "priority";
+        newPriority.textContent = project.todoArray[i].priority;
+        if (project.todoArray[i].priority === "High") {
+            newPriority.classList.add("high-priority")
+        }
         newListItem.appendChild(newPriority);
 
         const newDueDate = document.createElement("p");
