@@ -1,7 +1,9 @@
+import {projectArray, createProject, deleteProject} from "./projectStorage.js";
+
 const sidebarProjects = document.querySelector("#project-list")
 const projectContainer = document.querySelector("#project-container")
 
-function renderSidebar(projectArray) {
+function renderSidebar() {
     while (sidebarProjects.firstChild) {
         sidebarProjects.removeChild(sidebarProjects.firstChild)
     }
@@ -13,8 +15,6 @@ function renderSidebar(projectArray) {
     projectButton.id = "inbox-list-button";
     projectButton.textContent = projectArray[0].name;
     projectButton.addEventListener("click", (event) => {
-        console.log(event)
-        console.log("Inbox")
         renderProject(projectArray[0]);
     })
     newListItem.appendChild(projectButton)
@@ -29,8 +29,6 @@ function renderSidebar(projectArray) {
         projectButton.className = "project-list-button";
         projectButton.textContent = projectArray[i].name;
         projectButton.addEventListener("click", (event) => {
-            console.log(event)
-            console.log(`PROJECT ${i}`)
             renderProject(projectArray[i]);
         })
         newListItem.appendChild(projectButton)
@@ -39,8 +37,8 @@ function renderSidebar(projectArray) {
         deleteButton.className = "delete";
         deleteButton.textContent = "X"
         deleteButton.addEventListener("click", (event) => {
-            console.log(event)
-            console.log(`DELETE Project ${i}`)
+            deleteProject(i)
+            renderSidebar()
         })
         newListItem.appendChild(deleteButton)
 
@@ -92,8 +90,8 @@ function renderProject(project) {
         deleteButton.className = "delete";
         deleteButton.textContent = "X"
         deleteButton.addEventListener("click", (event) => {
-            console.log(event)
-            console.log(`DELETE TASK ${i}`)
+            project.deleteTodoInProject(i)
+            renderProject(project)
         })
         newListItem.appendChild(deleteButton)
 

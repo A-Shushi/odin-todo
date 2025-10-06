@@ -19,5 +19,5 @@ console.log(projectStorage.projectArray[0].todoArray)
 console.log(projectStorage.projectArray[1].todoArray)
 console.log(projectStorage.projectArray[2].todoArray)
 
-display.renderSidebar(projectStorage.projectArray)
+display.renderSidebar()
 display.renderProject(projectStorage.projectArray[0])

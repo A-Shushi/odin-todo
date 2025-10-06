@@ -6,7 +6,11 @@ class Project {
 }
 
 Project.prototype.appendTodoToProject = function (todo) {
-    this.todoArray.push(todo)
+    this.todoArray.push(todo);
+}
+
+Project.prototype.deleteTodoInProject = function (todoIndex) {
+    this.todoArray.splice(todoIndex);
 }
 
 const projectArray = [];
@@ -16,4 +20,8 @@ function createProject(name) {
     projectArray.push(newProject)
 }
 
-export {projectArray, createProject}
+function deleteProject(projectIndex) {
+    projectArray.splice(projectIndex, 1)
+}
+
+export {projectArray, createProject, deleteProject}
