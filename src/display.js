@@ -1,4 +1,3 @@
-import createTodo from "./createTodo.js";
 import {projectArray, createProject, deleteProject} from "./projectStorage.js";
 import Todo from "./createTodo.js";
 import * as projectStorage from "./projectStorage";
@@ -97,6 +96,22 @@ function renderProject(project) {
     })
     newTodoDiv.appendChild(newAddTodoButton)
     projectContainer.appendChild(newTodoDiv)
+
+    window.addEventListener("keydown", (e) => {
+        const tag = e.target.tagName.toLowerCase();
+        const isEditable = e.target.isContentEditable;
+
+        if (tag === "input" || tag === "textarea" || isEditable) return;
+
+        if (e.code === 'Space' || e.key === ' ') {
+            if (newAddTodoButton.className !== "close") {
+                todoForm.className = "active";
+                newAddTodoButton.textContent = "Close";
+                newAddTodoButton.className = "close";
+                titleInput.focus()
+            }
+        }
+    });
 
     const todoForm = document.createElement("form")
     todoForm.id = "todo-form";
