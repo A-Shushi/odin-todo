@@ -18,6 +18,7 @@ li {
 
 #sidebar {
     background-color: oklch(25% 0% 287deg);
+    border-right: 1px solid black;
 }
 
 #project-list {
@@ -115,14 +116,70 @@ li {
 }
 
 #todo-form {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s ease;
+    color: white;
+    margin-bottom: 0.5rem;
 }
 
 #todo-form.active {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 0.5rem;
-    color: white;
+    max-height: 250px;
+}
+
+#todo-form > input,
+#todo-form > select,
+#todo-form > textarea {
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 0.25rem;
+    padding: 0.25rem;
+}
+
+#todo-form > textarea {
+    min-height: 3rem;
+}
+
+#selector-container {
+    display: grid;
+    grid-template-columns: 1fr 10px 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas:
+    "priority-label empty date-label"
+    "priority-input empty date-input";
+}
+
+label[for="todo-priority"] {
+    grid-area: priority-label;
+}
+
+label[for="todo-date"] {
+    grid-area: date-label;
+}
+
+#todo-priority {
+    grid-area: priority-input;
+    min-height: 1.5rem;
+}
+
+#todo-date {
+    grid-area: date-input;
+    min-height: 1.5rem;
+}
+
+#todo-form > button {
+    border-radius: 8px;
+    border: none;
+    height: 2rem;
+    width: 10rem;
+    margin-top: 0.5rem;
+    background-color: lightgreen;
+}
+
+#todo-form > button:hover {
+    background-color: green;
 }
 
 #todo-list {

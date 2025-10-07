@@ -1,6 +1,7 @@
 import createTodo from "./createTodo.js";
 import {projectArray, createProject, deleteProject} from "./projectStorage.js";
 import Todo from "./createTodo.js";
+import * as projectStorage from "./projectStorage";
 
 const sidebarProjects = document.querySelector("#project-list")
 const projectContainer = document.querySelector("#project-container")
@@ -41,6 +42,7 @@ function renderSidebar() {
         deleteButton.addEventListener("click", (event) => {
             deleteProject(i)
             renderSidebar()
+            console.log(projectStorage.projectArray)
         })
         newListItem.appendChild(deleteButton)
 
@@ -118,10 +120,14 @@ function renderProject(project) {
     descriptionInput.name = "todo-description"
     todoForm.appendChild(descriptionInput)
 
+    const selectorDiv = document.createElement("div")
+    selectorDiv.id = "selector-container"
+    todoForm.appendChild(selectorDiv)
+
     const priorityLabel = document.createElement("label")
     priorityLabel.setAttribute("for", "todo-priority")
     priorityLabel.textContent = "Priority:"
-    todoForm.appendChild(priorityLabel)
+    selectorDiv.appendChild(priorityLabel)
     const priorityInput = document.createElement("select")
     priorityInput.id = "todo-priority"
     priorityInput.name = "todo-priority"
@@ -133,20 +139,19 @@ function renderProject(project) {
     optionHigh.value = "High"
     optionHigh.textContent = "High"
     priorityInput.appendChild(optionHigh)
-    todoForm.appendChild(priorityInput)
+    selectorDiv.appendChild(priorityInput)
 
     const dateLabel = document.createElement("label");
     dateLabel.setAttribute("for", "todo-date")
     dateLabel.textContent = "Date:"
-    todoForm.appendChild(dateLabel)
+    selectorDiv.appendChild(dateLabel)
     const dateInput = document.createElement("input");
     dateInput.type = "date"
     dateInput.id = "todo-date"
     dateInput.name = "todo-date"
-    todoForm.appendChild(dateInput);
+    selectorDiv.appendChild(dateInput);
 
     const submitTodoButton = document.createElement("button");
-    submitTodoButton.type = "button";
     submitTodoButton.textContent = "Add TODO"
     submitTodoButton.addEventListener("click", () => {
         const newTodo = new Todo(titleInput.value, descriptionInput.value, dateInput.value, priorityInput.value)
