@@ -92,6 +92,10 @@ function renderProject(project) {
             todoForm.className = "active";
             newAddTodoButton.textContent = "Close";
             newAddTodoButton.className = "close";
+            titleInput.value = "";
+            descriptionInput.value = "";
+            priorityInput.value = "Low"
+            dateInput.value = "";
         }
     })
     newTodoDiv.appendChild(newAddTodoButton)
@@ -109,6 +113,21 @@ function renderProject(project) {
                 newAddTodoButton.textContent = "Close";
                 newAddTodoButton.className = "close";
                 titleInput.focus()
+                titleInput.value = "";
+                descriptionInput.value = "";
+                priorityInput.value = "Low"
+                dateInput.value = "";
+            }
+        }
+    });
+
+    window.addEventListener("keydown", (e) => {
+        if (e.code === 'Escape' || e.key === "Escape") {
+            if (newAddTodoButton.className === "close") {
+                todoForm.classList.remove("active");
+                newAddTodoButton.textContent = "New TODO";
+                newAddTodoButton.classList.remove("close");
+                document.activeElement.blur()
             }
         }
     });

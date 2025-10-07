@@ -120,7 +120,6 @@ li {
     flex-direction: column;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 1s ease;
     color: white;
     margin-bottom: 0.5rem;
 }
