@@ -224,6 +224,17 @@ function renderProject(project) {
         if (project.todoArray[i].priority === "High") {
             newPriority.classList.add("high-priority")
         }
+        newPriority.addEventListener("click", () => {
+            if (project.todoArray[i].priority === "High") {
+                project.todoArray[i].priority = "Low";
+                newPriority.classList.remove("high-priority");
+                renderProject(project);
+            } else {
+                project.todoArray[i].priority = "High";
+                newPriority.classList.add("high-priority");
+                renderProject(project);
+            }
+        })
         newListItem.appendChild(newPriority);
 
         const newDueDate = document.createElement("p");
