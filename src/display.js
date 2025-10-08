@@ -189,7 +189,13 @@ function renderProject(project) {
     const submitTodoButton = document.createElement("button");
     submitTodoButton.textContent = "Add TODO"
     submitTodoButton.addEventListener("click", () => {
-        const newTodo = new Todo(titleInput.value, descriptionInput.value, new Date(dateInput.value), priorityInput.value)
+        let dueDate;
+        if (dateInput.value === "") {
+            dueDate = new Date();
+        } else {
+            dueDate = new Date(dateInput.value)
+        }
+        const newTodo = new Todo(titleInput.value, descriptionInput.value, dueDate, priorityInput.value)
         project.appendTodoToProject(newTodo)
         renderProject(project)
     })
