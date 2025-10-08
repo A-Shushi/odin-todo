@@ -9,7 +9,7 @@ projectStorage.createProject("Inbox")
 
 // Create new note and append to storage
 
-projectStorage.projectArray[0].appendTodoToProject(new Todo("Index Title", "Description", "20 Sept", "High"))
+projectStorage.projectArray[0].appendTodoToProject(new Todo("Index Title", "Description", new Date(), "High"))
 
 display.renderSidebar()
 display.renderProject(projectStorage.projectArray[0])

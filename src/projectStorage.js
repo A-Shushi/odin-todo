@@ -7,6 +7,7 @@ class Project {
 
 Project.prototype.appendTodoToProject = function (todo) {
     this.todoArray.push(todo);
+    this.todoArray.sort((a, b) => a.dueDate - b.dueDate)
 }
 
 Project.prototype.deleteTodoInProject = function (todoIndex) {

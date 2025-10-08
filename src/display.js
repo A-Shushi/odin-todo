@@ -1,3 +1,4 @@
+import {format, differenceInCalendarDays} from "date-fns";
 import {projectArray, createProject, deleteProject} from "./projectStorage.js";
 import Todo from "./createTodo.js";
 import * as projectStorage from "./projectStorage";
@@ -188,7 +189,7 @@ function renderProject(project) {
     const submitTodoButton = document.createElement("button");
     submitTodoButton.textContent = "Add TODO"
     submitTodoButton.addEventListener("click", () => {
-        const newTodo = new Todo(titleInput.value, descriptionInput.value, dateInput.value, priorityInput.value)
+        const newTodo = new Todo(titleInput.value, descriptionInput.value, new Date(dateInput.value), priorityInput.value)
         project.appendTodoToProject(newTodo)
         renderProject(project)
     })
@@ -239,7 +240,11 @@ function renderProject(project) {
 
         const newDueDate = document.createElement("p");
         newDueDate.className = "due-date";
-        newDueDate.textContent = project.todoArray[i].dueDate
+        if (differenceInCalendarDays(project.todoArray[i].dueDate, new Date()) > 6) {
+            newDueDate.textContent = format(project.todoArray[i].dueDate, "dd MMM")
+        } else {
+            newDueDate.textContent = format(project.todoArray[i].dueDate, "EEE")
+        }
         newListItem.appendChild(newDueDate);
 
         const newTaskTitle = document.createElement("p");
