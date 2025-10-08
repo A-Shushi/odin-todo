@@ -242,6 +242,8 @@ function renderProject(project) {
         newDueDate.className = "due-date";
         if (differenceInCalendarDays(project.todoArray[i].dueDate, new Date()) > 6) {
             newDueDate.textContent = format(project.todoArray[i].dueDate, "dd MMM")
+        } else if (differenceInCalendarDays(project.todoArray[i].dueDate, new Date()) === 0) {
+            newDueDate.textContent = "Today"
         } else {
             newDueDate.textContent = format(project.todoArray[i].dueDate, "EEE")
         }
