@@ -211,10 +211,18 @@ function renderProject(project) {
     for (let i = 0; i < project.todoArray.length; i++) {
         const newListItem = document.createElement("li");
         newListItem.className = "todo-list-item"
+        newListItem.addEventListener("click", () => {
+            if (newDescription.className === "todo-description") {
+                newDescription.classList.add("active-item")
+            } else {
+                newDescription.classList.remove("active-item")
+            }
+        })
 
         const newCheckbox = document.createElement("input")
         newCheckbox.type = "checkbox";
         newCheckbox.name = "task-check";
+        newCheckbox.className = "todo-checkbox"
         newCheckbox.id = `${i}`;
         newCheckbox.addEventListener('change', function () {
             if (this.checked) {
@@ -224,6 +232,17 @@ function renderProject(project) {
             }
         });
         newListItem.appendChild(newCheckbox);
+
+        const newDueDate = document.createElement("p");
+        newDueDate.className = "due-date";
+        if (differenceInCalendarDays(project.todoArray[i].dueDate, new Date()) > 6) {
+            newDueDate.textContent = format(project.todoArray[i].dueDate, "dd MMM")
+        } else if (differenceInCalendarDays(project.todoArray[i].dueDate, new Date()) === 0) {
+            newDueDate.textContent = "Today"
+        } else {
+            newDueDate.textContent = format(project.todoArray[i].dueDate, "EEE")
+        }
+        newListItem.appendChild(newDueDate);
 
         const newPriority = document.createElement("p")
         newPriority.className = "priority";
@@ -244,17 +263,6 @@ function renderProject(project) {
         })
         newListItem.appendChild(newPriority);
 
-        const newDueDate = document.createElement("p");
-        newDueDate.className = "due-date";
-        if (differenceInCalendarDays(project.todoArray[i].dueDate, new Date()) > 6) {
-            newDueDate.textContent = format(project.todoArray[i].dueDate, "dd MMM")
-        } else if (differenceInCalendarDays(project.todoArray[i].dueDate, new Date()) === 0) {
-            newDueDate.textContent = "Today"
-        } else {
-            newDueDate.textContent = format(project.todoArray[i].dueDate, "EEE")
-        }
-        newListItem.appendChild(newDueDate);
-
         const newTaskTitle = document.createElement("p");
         newTaskTitle.className = "todo-item";
         newTaskTitle.textContent = project.todoArray[i].title;
@@ -268,6 +276,11 @@ function renderProject(project) {
             renderProject(project)
         })
         newListItem.appendChild(deleteButton)
+
+        const newDescription = document.createElement("p")
+        newDescription.className = "todo-description";
+        newDescription.textContent = project.todoArray[i].description;
+        newListItem.appendChild(newDescription)
 
         newUnorderedList.appendChild(newListItem)
     }

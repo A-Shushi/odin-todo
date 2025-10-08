@@ -187,6 +187,11 @@ label[for="todo-date"] {
     gap: 0.5rem;
 }
 
+.todo-checkbox {
+    width: 1rem;
+    height: 1rem;
+}
+
 .priority {
     border: 1px solid green;
     border-radius: 8px;
@@ -203,10 +208,20 @@ label[for="todo-date"] {
     background-color: lightcoral;
 }
 
+.due-date {
+    font-size: 0.8rem;
+    width: 4rem;
+    padding: 0.1rem 0;
+    text-align: center;
+    border: 1px solid oklch(30% 0% 287deg);
+    border-radius: 8px;
+}
+
 .todo-list-item {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 0.5rem;
+    column-gap: 0.5rem;
     background-color: lightgrey;
     border-radius: 8px;
     padding: 0.5rem;
@@ -222,4 +237,18 @@ label[for="todo-date"] {
 
 .checked-todo {
     text-decoration: line-through;
+}
+
+.todo-description {
+    width: 100%;
+    margin-left: 9.5rem;
+    font-size: 0.9rem;
+    color: oklch(30% 0% 287deg);
+    max-height: 0;
+    overflow: hidden;
+}
+
+.active-item {
+    max-height: 250px;
+    padding-top: 0.25rem;
 }
