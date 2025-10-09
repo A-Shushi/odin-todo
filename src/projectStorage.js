@@ -1,5 +1,3 @@
-import storeProjects from "./storage.js";
-
 class Project {
     constructor(name, todoArray) {
         this.name = name;
@@ -34,6 +32,18 @@ function createProject(name, todoArray) {
 function deleteProject(projectIndex) {
     projectArray.splice(projectIndex, 1)
     storeProjects(projectArray)
+}
+
+function storeProjects(projectArray) {
+    const storageArray = [];
+    for (const project of projectArray) {
+        const projectToStore = {
+            name: project.name,
+            todoArray: project.todoArray
+        }
+        storageArray.push(projectToStore)
+    }
+    localStorage.projectArray = JSON.stringify(storageArray);
 }
 
 function getLocalArray() {
