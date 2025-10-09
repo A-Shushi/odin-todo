@@ -288,7 +288,9 @@ function renderProject(project) {
         const newDescription = document.createElement("p")
         newDescription.className = "todo-description";
         newDescription.textContent = project.todoArray[i].description;
-        newListItem.appendChild(newDescription)
+        if (project.todoArray[i].description) {
+            newListItem.appendChild(newDescription)
+        }
 
         newUnorderedList.appendChild(newListItem)
     }
