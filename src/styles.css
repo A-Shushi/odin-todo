@@ -121,11 +121,11 @@ li {
     max-height: 0;
     overflow: hidden;
     color: white;
-    margin-bottom: 0.5rem;
 }
 
 #todo-form.active {
     max-height: 250px;
+    margin-bottom: 0.5rem;
 }
 
 #todo-form > input,
@@ -233,6 +233,18 @@ label[for="todo-date"] {
 
 .todo-item {
     flex: 1;
+}
+
+.edit-button {
+    width: 3rem;
+    height: 1.5rem;
+    border-radius: 8px;
+    background-color: oklch(75% 0% 287deg);
+    border: 1px solid oklch(30% 0% 287deg);
+}
+
+.edit-button:hover {
+    box-shadow: rgba(255, 255, 255, 0.25) 0px 30px 60px -12px inset, rgba(255, 255, 255, 0.3) 0px 18px 36px -18px inset;
 }
 
 .checked-todo {

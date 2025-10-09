@@ -230,6 +230,9 @@ function renderProject(project) {
             } else {
                 newListItem.classList.remove("checked-todo")
             }
+            if (newDescription.className === "todo-description active-item") {
+                newDescription.classList.remove("active-item")
+            }
         });
         newListItem.appendChild(newCheckbox);
 
@@ -267,6 +270,11 @@ function renderProject(project) {
         newTaskTitle.className = "todo-item";
         newTaskTitle.textContent = project.todoArray[i].title;
         newListItem.appendChild(newTaskTitle)
+
+        const editButton = document.createElement("button")
+        editButton.className = "edit-button";
+        editButton.textContent = "Edit"
+        newListItem.appendChild(editButton)
 
         const deleteButton = document.createElement("button")
         deleteButton.className = "delete";
