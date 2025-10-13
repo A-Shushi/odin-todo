@@ -264,3 +264,33 @@ label[for="todo-date"] {
     max-height: 250px;
     padding-top: 0.25rem;
 }
+
+.edit-form {
+    width: 100%;
+    display: none;
+}
+
+.edit-form.active-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.date-edit-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-date-button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit-submit-button {
+    border-radius: 8px;
+    border: none;
+    height: 2rem;
+    width: 10rem;
+    margin-top: 0.5rem;
+    background-color: lightgreen;
+}

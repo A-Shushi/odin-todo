@@ -274,6 +274,9 @@ function renderProject(project) {
         const editButton = document.createElement("button")
         editButton.className = "edit-button";
         editButton.textContent = "Edit"
+        editButton.addEventListener("click", () => {
+            editDiv.classList.add("active-form")
+        })
         newListItem.appendChild(editButton)
 
         const deleteButton = document.createElement("button")
@@ -291,6 +294,62 @@ function renderProject(project) {
         if (project.todoArray[i].description) {
             newListItem.appendChild(newDescription)
         }
+
+        const editDiv = document.createElement("div")
+        editDiv.className = "edit-form";
+
+        const editTitleLabel = document.createElement("label")
+        editTitleLabel.className = "edit-label"
+        editTitleLabel.textContent = "Title:"
+        editDiv.appendChild(editTitleLabel)
+
+        const editTitleInput = document.createElement("input")
+        editTitleInput.className = "edit-title-input"
+        editTitleInput.value = project.todoArray[i].title
+        editDiv.appendChild(editTitleInput)
+
+        const editDescriptionLabel = document.createElement("label")
+        editDescriptionLabel.className = "edit-label"
+        editDescriptionLabel.textContent = "Description:"
+        editDiv.appendChild(editDescriptionLabel)
+
+        const editDescriptionInput = document.createElement("textarea")
+        editDescriptionInput.className = "edit-description-input"
+        editDescriptionInput.value = project.todoArray[i].description
+        editDiv.appendChild(editDescriptionInput)
+
+        const editDateButtonDiv = document.createElement("div")
+        editDateButtonDiv.className = "edit-date-button-container"
+
+        const editDateDiv = document.createElement("div")
+        editDateDiv.className = "date-edit-container"
+
+        const editDateLabel = document.createElement("label")
+        editDateLabel.className = "edit-label"
+        editDateLabel.textContent = "Date:"
+        editDateDiv.appendChild(editDateLabel)
+
+        const editDateInput = document.createElement("input")
+        editDateInput.type = "date"
+        editDateInput.className = "edit-date-input"
+        editDateInput.value = format(project.todoArray[i].dueDate, "yyyy-MM-dd")
+        editDateDiv.appendChild(editDateInput)
+
+        editDateButtonDiv.appendChild(editDateDiv)
+
+        const editSubmitButton = document.createElement("button")
+        editSubmitButton.className = "edit-submit-button"
+        editSubmitButton.textContent = "Edit TODO"
+        editSubmitButton.addEventListener("click", () => {
+            project.editTodoInProject(i, editTitleInput.value, editDescriptionInput.value, new Date(editDateInput.value))
+            console.log("Success")
+            renderProject(project)
+        })
+        editDateButtonDiv.appendChild(editSubmitButton)
+
+        editDiv.appendChild(editDateButtonDiv)
+
+        newListItem.appendChild(editDiv)
 
         newUnorderedList.appendChild(newListItem)
     }
