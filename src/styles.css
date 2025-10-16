@@ -275,6 +275,14 @@ label[for="todo-date"] {
     flex-direction: column;
 }
 
+.edit-form > input,
+.edit-form > textarea {
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 0.25rem;
+    padding: 0.25rem;
+}
+
 .date-edit-container {
     display: flex;
     flex-direction: column;

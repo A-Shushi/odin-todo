@@ -212,7 +212,7 @@ function renderProject(project) {
         const newListItem = document.createElement("li");
         newListItem.className = "todo-list-item"
         newListItem.addEventListener("click", () => {
-            if (newDescription.className === "todo-description") {
+            if (newDescription.className === "todo-description" || editDiv.classList.contains("active-form")) {
                 newDescription.classList.add("active-item")
             } else {
                 newDescription.classList.remove("active-item")
@@ -274,8 +274,13 @@ function renderProject(project) {
         const editButton = document.createElement("button")
         editButton.className = "edit-button";
         editButton.textContent = "Edit"
-        editButton.addEventListener("click", () => {
-            editDiv.classList.add("active-form")
+        editButton.addEventListener("click", (event) => {
+            if (editDiv.className === "edit-form") {
+                editDiv.classList.add("active-form")
+
+            } else {
+                editDiv.classList.remove("active-form")
+            }
         })
         newListItem.appendChild(editButton)
 
