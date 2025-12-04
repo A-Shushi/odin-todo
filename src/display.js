@@ -42,6 +42,7 @@ function renderSidebar() {
         deleteButton.addEventListener("click", (event) => {
             deleteProject(i)
             renderSidebar()
+            renderProject(projectStorage.projectArray[0])
             console.log(projectStorage.projectArray)
         })
         newListItem.appendChild(deleteButton)
