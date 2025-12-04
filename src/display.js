@@ -1,7 +1,6 @@
 import {format, differenceInCalendarDays} from "date-fns";
 import {projectArray, createProject, deleteProject} from "./projectStorage.js";
 import Todo from "./createTodo.js";
-import * as projectStorage from "./projectStorage";
 
 const sidebarProjects = document.querySelector("#project-list")
 const projectContainer = document.querySelector("#project-container")
@@ -42,8 +41,7 @@ function renderSidebar() {
         deleteButton.addEventListener("click", (event) => {
             deleteProject(i)
             renderSidebar()
-            renderProject(projectStorage.projectArray[0])
-            console.log(projectStorage.projectArray)
+            renderProject(projectArray[0])
         })
         newListItem.appendChild(deleteButton)
 
